@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hanger - Thrift & Rent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <h1 class="logo">HANGER</h1>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Sell</a></li>
+                <li><a href="#">Rent</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Cart 🛒</a></li>
+                <li><button onclick="openAuthModal()">Login / Signup</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Thrift, Sell & Rent Clothes</h2>
+        <p>Give your old clothes a new life while shopping sustainably.</p>
+        <button onclick="exploreShop()">Explore Shop</button>
+    </section>
+
+    <section class="upload">
+        <h2>Sell Your Clothes</h2>
+        <input type="file" id="uploadImage" accept="image/*">
+        <button onclick="uploadClothing()">Upload</button>
+    </section>
+
+    <section class="filter">
+        <label for="category">Category:</label>
+        <select id="category" onchange="filterProducts()">
+            <option value="all">All</option>
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+            <option value="kids">Kids</option>
+        </select>
+
+        <label for="minPrice">Min Price:</label>
+        <input type="number" id="minPrice" placeholder="₹0" oninput="filterProducts()">
+        
+        <label for="maxPrice">Max Price:</label>
+        <input type="number" id="maxPrice" placeholder="₹10000" oninput="filterProducts()">
+    </section>
+
+    <section class="products">
+        <h2>Trending Thrift Items</h2>
+        <div class="product-container">
+            <div class="product men" data-price="1200">
+                <img src="placeholder.jpg" alt="Men Jacket">
+                <h3>Men's Jacket</h3>
+                <p>₹1200</p>
+            </div>
+            <div class="product women" data-price="800">
+                <img src="placeholder.jpg" alt="Women Dress">
+                <h3>Women's Dress</h3>
+                <p>₹800</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAuthModal()">&times;</span>
+            <h2 id="authTitle">Login</h2>
+            <form id="authForm">
+                <input type="text" id="authName" placeholder="Full Name" style="display: none;">
+                <input type="email" id="authEmail" placeholder="Email" required>
+                <input type="password" id="authPassword" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="authToggle">Don't have an account? <a href="#" onclick="toggleAuth()">Sign up</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
