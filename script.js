@@ -139,3 +139,64 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const genderFilter = document.getElementById("filter-gender");
+    const priceFilter = document.getElementById("filter-price");
+    const priceValue = document.getElementById("price-value");
+    const typeFilter = document.getElementById("filter-type");
+    const applyFiltersBtn = document.getElementById("apply-filters");
+    const clothingItems = document.querySelectorAll(".clothing-item");
+
+    // Update displayed price when slider moves
+    priceFilter.addEventListener("input", function () {
+        priceValue.textContent = priceFilter.value;
+    });
+
+    // Function to apply filters
+    function applyFilters() {
+        const selectedGender = genderFilter.value;
+        const selectedType = typeFilter.value;
+        const selectedPrice = parseInt(priceFilter.value, 10);
+
+        clothingItems.forEach((item) => {
+            const itemGender = item.getAttribute("data-gender");
+            const itemType = item.getAttribute("data-type");
+            const itemPrice = parseInt(item.getAttribute("data-price"), 10);
+
+            // Apply filter conditions
+            const genderMatch = selectedGender === "all" || itemGender === selectedGender;
+            const typeMatch = selectedType === "all" || itemType === selectedType;
+            const priceMatch = itemPrice <= selectedPrice;
+
+            if (genderMatch && typeMatch && priceMatch) {
+                item.style.display = "block"; // Show item
+            } else {
+                item.style.display = "none"; // Hide item
+            }
+        });
+    }
+
+    // Attach event listener to the filter button
+    applyFiltersBtn.addEventListener("click", applyFilters);
+});
+const rentImageInput = document.getElementById("rent-image");
+
+// Create an image preview container
+const imagePreviewContainer = document.createElement("div");
+imagePreviewContainer.id = "rent-image-preview";
+rentImageInput.insertAdjacentElement("afterend", imagePreviewContainer);
+
+// Function to preview selected image
+rentImageInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imagePreviewContainer.innerHTML = `<img src="${e.target.result}" alt="Selected Image" style="max-width: 200px; margin-top: 10px; border-radius: 8px;">`;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        imagePreviewContainer.innerHTML = "";
+    }
+});
