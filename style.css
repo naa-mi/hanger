@@ -1,88 +1,232 @@
-* {
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    background: #f4f4f4;
 }
 
-body {
-    text-align: center;
-    background-color: #f8f8f8;
-}
-
+/* Navigation Bar */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
-    background-color: #333;
+    background: #333;
+    padding: 10px 20px;
     color: white;
+}
+
+nav .logo {
+    font-size: 1.5em;
+    font-weight: bold;
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    gap: 15px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
 }
 
-nav ul li button {
-    padding: 10px;
-    cursor: pointer;
-    border: none;
-    background: #007bff;
+nav ul li a {
+    text-decoration: none;
     color: white;
+    padding: 8px 12px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background: #555;
     border-radius: 5px;
 }
 
-.hero {
-    margin-top: 50px;
-    padding: 40px;
-    background-color: #ddd;
-}
-
-.filter {
-    margin: 20px 0;
-}
-
-.filter label, .filter select, .filter input {
-    font-size: 16px;
-    margin: 10px;
-    padding: 5px;
-}
-
-.upload {
-    margin: 20px 0;
-}
-
-.upload input {
-    margin: 10px;
-    padding: 5px;
-}
-
-.modal {
+/* Sections */
+.hidden {
     display: none;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Forms */
+form input, form button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Buttons */
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+/* Modal */
+.modal {
     position: fixed;
-    top: 0;
+    z-index: 1000;
     left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .modal-content {
     background: white;
     padding: 20px;
-    margin: 15% auto;
-    width: 300px;
+    border-radius: 10px;
     text-align: center;
-    border-radius: 5px;
+    position: relative;
+    width: 300px;
 }
 
 .close {
-    float: right;
+    position: absolute;
+    top: 10px;
+    right: 15px;
     font-size: 24px;
     cursor: pointer;
+    color: black;
+    font-weight: bold;
+}
+
+/* Profile Section */
+#profile-section {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+#profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    object-fit: cover;
+}
+
+/* Full-Screen Home Section */
+#home-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh; /* Ensures it covers full viewport height */
+    width: 100vw; /* Ensures it covers full viewport width */
+    background: url('background.jpg') no-repeat center center/cover;
+}
+
+/* Container for Welcome Message */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh; /* Fullscreen height */
+    background: url('background.jpg') no-repeat center center/cover; /* Replace with your image */
+    color: white;
+    padding: 20px;
+}
+
+
+/* Title */
+.home-container h1 {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Description */
+.home-container p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Explore Now Button */
+.explore-btn {
+    padding: 15px 30px;
+    background: #ff6600;
+    color: white;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.explore-btn:hover {
+    background: #e65c00;
+}
+
+#clothes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.clothing-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    width: 200px;
+}
+
+.clothing-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.clothing-item p {
+    font-weight: bold;
+    margin-top: 10px;
+}
+#cart-btn {
+    background: #ff6600;
+    padding: 8px 15px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+#cart-btn:hover {
+    background: #e65c00;
 }
