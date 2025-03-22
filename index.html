@@ -3,84 +3,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hanger - Thrift & Rent</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Hanger - Thrift, Sell & Rent</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <h1 class="logo">HANGER</h1>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Sell</a></li>
-                <li><a href="#">Rent</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Cart 🛒</a></li>
-                <li><button onclick="openAuthModal()">Login / Signup</button></li>
-            </ul>
-        </nav>
-    </header>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="logo">Hanger</div>
+        <ul>
+            <li><a href="#" id="home-btn">Home</a></li>
+            <li><a href="#" id="buy-btn">Buy</a></li>
+            <li><a href="#" id="sell-btn">Sell</a></li>
+            <li><a href="#" id="rent-btn">Rent</a></li>
+            <li><a href="#" id="profile-btn">Profile</a></li>
+            <li><a href="#" id="cart-btn">Cart(<span id="cart-count">0</span>)</a></li>
+            <li><a href="#" id="login-btn">Login/Signup</a></li>
+        </ul>
+    </nav>
 
-    <section class="hero">
-        <h2>Thrift, Sell & Rent Clothes</h2>
-        <p>Give your old clothes a new life while shopping sustainably.</p>
-        <button onclick="exploreShop()">Explore Shop</button>
-    </section>
+    <!-- Home Section (Now Includes Home Content) -->
+    <section id="home-section">
+        <div class="home-container">
+            <h1>Welcome to Hanger</h1>
+            <p>Buy, Sell, and Rent second-hand clothes effortlessly.</p>
+            <button class="explore-btn">Explore Now</button>
+        </div>
 
-    <section class="upload">
-        <h2>Sell Your Clothes</h2>
-        <input type="file" id="uploadImage" accept="image/*">
-        <button onclick="uploadClothing()">Upload</button>
-    </section>
-
-    <section class="filter">
-        <label for="category">Category:</label>
-        <select id="category" onchange="filterProducts()">
-            <option value="all">All</option>
-            <option value="men">Men</option>
-            <option value="women">Women</option>
-            <option value="kids">Kids</option>
-        </select>
-
-        <label for="minPrice">Min Price:</label>
-        <input type="number" id="minPrice" placeholder="₹0" oninput="filterProducts()">
+        <section id="featured-items">
+            <h2>Featured Items</h2>
+            <p>Discover trending second-hand clothes!</p>
+        </section>
         
-        <label for="maxPrice">Max Price:</label>
-        <input type="number" id="maxPrice" placeholder="₹10000" oninput="filterProducts()">
+
+        <!-- Featured Clothing Section -->
+        <section id="featured-items">
+            <h2>Featured Items</h2>
+            <div class="featured-list">
+                <div class="featured-item">
+                    <img src="featured1.jpg" alt="Trendy Jacket">
+                    <p>Men's Leather Jacket - ₹2500</p>
+                </div>
+                <div class="featured-item">
+                    <img src="featured2.jpg" alt="Designer Dress">
+                    <p>Women's Designer Dress - ₹3000</p>
+                </div>
+                <div class="featured-item">
+                    <img src="featured3.jpg" alt="Kids Sweater">
+                    <p>Kids' Winter Sweater - ₹1200</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trending Categories -->
+        <section id="trending-categories">
+            <h2>Trending Categories</h2>
+            <div class="category-list">
+                <a href="#" class="category" data-category="men">Men's Wear</a>
+                <a href="#" class="category" data-category="women">Women's Wear</a>
+                <a href="#" class="category" data-category="kids">Kids' Wear</a>
+            </div>
+        </section>
+
+        <!-- Customer Testimonials -->
+        <section id="testimonials">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonial">
+                <p>"Hanger helped me save money on amazing outfits. Highly recommend!"</p>
+                <h4>- Aditi S.</h4>
+            </div>
+            <div class="testimonial">
+                <p>"Renting clothes has never been easier. Great platform!"</p>
+                <h4>- Rahul M.</h4>
+            </div>
+        </section>
     </section>
 
-    <section class="products">
-        <h2>Trending Thrift Items</h2>
-        <div class="product-container">
-            <div class="product men" data-price="1200">
-                <img src="placeholder.jpg" alt="Men Jacket">
-                <h3>Men's Jacket</h3>
-                <p>₹1200</p>
+    <!-- Buy Section -->
+    <section id="buy-section" class="hidden">
+        <h2>Buy Clothes</h2>
+
+        <!-- Filter Bar -->
+        <div id="filter-bar">
+            <select id="filter-gender">
+                <option value="all">All Genders</option>
+                <option value="men">Men</option>
+                <option value="women">Women</option>
+                <option value="kids">Kids</option>
+            </select>
+
+            <label>Price Range: <span id="price-value">1000</span></label>
+            <input type="range" id="filter-price" min="0" max="5000" step="100" value="1000">
+
+            <select id="filter-type">
+                <option value="all">All</option>
+                <option value="thrift">Thrift</option>
+                <option value="rent">Rent</option>
+            </select>
+
+            <button id="apply-filters">Apply Filters</button>
+        </div>
+
+        <!-- Clothes Display Section -->
+        <div id="clothes-list">
+            <!-- Men's Wear -->
+            <div class="clothing-item" data-gender="men" data-price="1500" data-type="thrift">
+                <img src="mens_jacket.jpg" alt="Men's Jacket">
+                <p>Men's Leather Jacket - ₹1500 (Thrift)</p>
             </div>
-            <div class="product women" data-price="800">
-                <img src="placeholder.jpg" alt="Women Dress">
-                <h3>Women's Dress</h3>
-                <p>₹800</p>
+            <div class="clothing-item" data-gender="men" data-price="1800" data-type="rent">
+                <img src="mens_tshirt.jpg" alt="Men's T-Shirt">
+                <p>Men's Casual T-Shirt - ₹1800 (Rent)</p>
+            </div>
+        
+            <!-- Women's Wear -->
+            <div class="clothing-item" data-gender="women" data-price="800" data-type="rent">
+                <img src="womens_dress.jpg" alt="Women's Dress">
+                <p>Women's Floral Dress - ₹800 (Rent)</p>
+            </div>
+            <div class="clothing-item" data-gender="women" data-price="1200" data-type="thrift">
+                <img src="womens_jacket.jpg" alt="Women's Jacket">
+                <p>Women's Winter Jacket - ₹1200 (Thrift)</p>
+            </div>
+        
+            <!-- Kids' Wear -->
+            <div class="clothing-item" data-gender="kids" data-price="900" data-type="thrift">
+                <img src="kids_shirt.jpg" alt="Kids Shirt">
+                <p>Kids' Cotton Shirt - ₹900 (Thrift)</p>
+            </div>
+            <div class="clothing-item" data-gender="kids" data-price="700" data-type="rent">
+                <img src="kids_dress.jpg" alt="Kids Dress">
+                <p>Kids' Party Dress - ₹700 (Rent)</p>
             </div>
         </div>
+        
     </section>
 
-    <div id="authModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeAuthModal()">&times;</span>
-            <h2 id="authTitle">Login</h2>
-            <form id="authForm">
-                <input type="text" id="authName" placeholder="Full Name" style="display: none;">
-                <input type="email" id="authEmail" placeholder="Email" required>
-                <input type="password" id="authPassword" placeholder="Password" required>
-                <button type="submit">Login</button>
-            </form>
-            <p id="authToggle">Don't have an account? <a href="#" onclick="toggleAuth()">Sign up</a></p>
-        </div>
+    <!-- Sell Section -->
+    <section id="sell-section" class="hidden">
+        <h2>Sell Your Clothes</h2>
+        <form id="sell-form">
+            <input type="text" placeholder="Item Title" required>
+            <input type="text" placeholder="Size (S, M, L, XL)" required>
+            <input type="text" placeholder="Color" required>
+            <input type="number" placeholder="Price (₹)" required>
+            <textarea placeholder="Description" required></textarea>
+            <input type="file" required>
+            <button type="submit">Post for Sale</button>
+        </form>
+    </section>
+
+    <!-- Rent Section -->
+<section id="rent-section" class="hidden">
+    <h2>Rent Out Your Clothes</h2>
+    <form id="rent-form">
+        <input type="text" id="rent-title" placeholder="Item Title" required>
+        <input type="text" id="rent-size" placeholder="Size (S, M, L, XL)" required>
+        <input type="text" id="rent-color" placeholder="Color" required>
+        <input type="number" id="rent-price" placeholder="Rental Price (₹)" required>
+        <textarea id="rent-description" placeholder="Description" required></textarea>
+        
+        <label>Rental Start Date:</label>
+        <input type="date" id="rent-start-date" required>
+
+        <label>Rental End Date:</label>
+        <input type="date" id="rent-end-date" required>
+
+        <input type="file" id="rent-image" required>
+        <button type="submit">Post for Rent</button>
+    </form>
+</section>
+
+
+    <!-- Profile Section -->
+<section id="profile-section" class="hidden">
+    <h2>My Profile</h2>
+    
+    <!-- User Info -->
+    <div id="user-info">
+        <img id="profile-pic" src="default-avatar.png" alt="Profile Picture">
+        <p><strong>Name:</strong> <span id="user-name">John Doe</span></p>
+        <p><strong>Email:</strong> <span id="user-email">johndoe@example.com</span></p>
+        <button id="edit-profile">Edit Profile</button>
     </div>
+
+    <!-- Order History -->
+    <h3>Order History</h3>
+    <div id="order-history">
+        <p>No recent orders.</p>
+    </div>
+
+    <!-- Wishlist -->
+    <h3>Wishlist</h3>
+    <div id="wishlist">
+        <p>No items in wishlist.</p>
+    </div>
+
+    <!-- Manage Listings -->
+    <h3>My Listings</h3>
+    <div id="my-listings">
+        <p>No active listings.</p>
+    </div>
+
+    <!-- Settings -->
+    <h3>Settings</h3>
+    <button id="change-password">Change Password</button>
+    <button id="logout-btn">Logout</button>
+</section>
+
+<!-- Login/Signup Modal -->
+<div id="auth-modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modal-title">Login</h2>
+
+        <!-- Login Form -->
+        <form id="login-form">
+            <input type="text" id="login-username" placeholder="Username" required>
+            <input type="password" id="login-password" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="#" id="switch-to-signup">Sign up</a></p>
+        </form>
+
+        <!-- Signup Form (Hidden by Default) -->
+        <form id="signup-form" class="hidden">
+            <input type="text" id="signup-username" placeholder="Username" required>
+            <input type="email" id="signup-email" placeholder="Email" required>
+            <input type="password" id="signup-password" placeholder="Password" required>
+            <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="#" id="switch-to-login">Login</a></p>
+        </form>
+    </div>
+</div>
+
+
+
 
     <script src="script.js"></script>
 </body>
 </html>
+
